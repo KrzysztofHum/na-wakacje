@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { useSearchContext } from "../contexts/SearchContext";
 import * as apiClient from "../api-client";
+import SearchResultsCard from "../components/SearchResultsCard";
 
 const Search = () => {
   const search = useSearchContext();
@@ -19,6 +20,29 @@ const Search = () => {
     apiClient.searchHotels(searchParams)
   );
 
-  return <>Search Page</>;
+  return (
+    <div className="grid gird-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+      <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
+        <div className="space-y-5">
+          <h3 className="text-lg text-semibold border-b border-slate-300 pb-5">
+            Filtruj:
+          </h3>
+          {/* TODO FILTERS */}
+        </div>
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="flex justify-between items-center">
+          <span className="text-xl font-bold">
+            Dostępnych hoteli : {hotelData?.pagination.total}
+            {search.destination ? `miejsce: ${search.destination}` : ""}
+          </span>
+          {/* TODO sort options */}
+        </div>
+        {hotelData?.data.map((hotel) => (
+          <SearchResultsCard hotel={hotel}/>
+        ))}
+      </div>
+    </div>
+  );
 };
 export default Search;
