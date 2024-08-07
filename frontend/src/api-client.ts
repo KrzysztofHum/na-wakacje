@@ -128,5 +128,5 @@ export const searchHotels = async (
   if (!response.ok) {
     throw new Error("Error fetching hotels");
   }
-  return response.json;
+  return response.json();
 };

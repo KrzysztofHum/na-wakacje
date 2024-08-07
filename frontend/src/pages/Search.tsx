@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Search = () => {
   const search = useSearchContext();
-  const [page, setPage] = useState<number>(1);
+  const [page] = useState<number>(1);
 
   const searchParams = {
     destination: search.destination,
@@ -40,7 +40,7 @@ const Search = () => {
           {/* TODO sort options */}
         </div>
         {hotelData?.data.map((hotel) => (
-          <SearchResultsCard hotel={hotel}/>
+          <SearchResultsCard hotel={hotel} />
         ))}
       </div>
     </div>
